@@ -1,0 +1,137 @@
+
+:root{
+  --bg:#0f1720;
+  --panel:#0b1220;
+  --muted:#9aa6b2;
+  --accent:#1db954;
+  --accent-2:#00b4d8;
+  --glass: rgba(255,255,255,0.03);
+  --card: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+  --radius:12px;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+*{box-sizing:border-box}
+html,body,#app{height:100%;margin:0;background:var(--bg);color:#e6eef6}
+.app{display:flex;height:100vh;overflow:hidden}
+.sidebar{width:220px;background:linear-gradient(180deg,#081018, #071018);padding:20px;display:flex;flex-direction:column;gap:14px}
+.logo{font-weight:800;color:var(--accent);font-size:20px;letter-spacing:1px}
+.nav{display:flex;flex-direction:column;gap:8px}
+.nav-btn{background:transparent;border:none;color:var(--muted);padding:8px 6px;text-align:left;border-radius:8px;cursor:pointer}
+.nav-btn:hover{background:var(--glass);color:#fff}
+.playlists{margin-top:12px;color:var(--muted);font-size:14px}
+.playlists ul{list-style:none;padding:0;margin:8px 0}
+.playlists li{padding:6px 0;color:var(--muted)}
+
+.sidebar-footer{margin-top:auto;font-size:12px;color:var(--muted)}
+
+.main{flex:1;padding:20px;overflow:auto}
+.header{display:flex;justify-content:flex-end;padding-bottom:8px}
+.header input{width:320px;padding:8px;border-radius:8px;border:0;background:rgba(255,255,255,0.03);color:#e6eef6}
+
+.view{display:none}
+.view.active{display:block}
+
+.artists-row{display:flex;gap:14px;margin-bottom:18px}
+.artist-card{width:200px;background:var(--card);padding:12px;border-radius:10px;color:#e6eef6;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.artist-art{width:100%;height:100px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:22px;color:#021018}
+.artist-name{font-weight:700}
+.artist-meta{font-size:13px;color:var(--muted)}
+
+.songs-table{width:100%;border-collapse:collapse;margin-top:8px;color:#e6eef6}
+.songs-table th{color:var(--muted);text-align:left;padding:8px}
+.songs-table td{padding:8px;border-top:1px solid rgba(255,255,255,0.02)}
+.play-row-btn{padding:6px 8px;border-radius:8px;border:0;background:var(--accent);color:#021018;cursor:pointer}
+
+.player{position:fixed;left:240px;right:20px;bottom:16px;background:rgba(5,10,12,0.6);backdrop-filter:blur(6px);border-radius:14px;padding:10px 14px;display:flex;align-items:center;gap:18px;box-shadow:0 6px 20px rgba(0,0,0,0.6)}
+.player-left{display:flex;align-items:center;gap:12px}
+.player-art{width:56px;height:56px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-2))}
+.player-meta{min-width:160px}
+.player-meta #player-title{font-weight:700}
+.icon-btn{background:transparent;border:0;color:#fff;cursor:pointer;padding:6px}
+.play-btn{background:var(--accent);color:#021018;border:0;border-radius:50%;width:44px;height:44px;font-weight:700;cursor:pointer;}
+
+.player-center{flex:1}
+.controls{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px}
+.progress{display:flex;align-items:center;gap:8px}
+.progress input[type="range"]{flex:1}
+
+.player-right{min-width:120px;text-align:right;color:var(--muted)}
+
+.crowdfund-grid{display:grid;grid-template-columns:2fr 1fr;gap:18px}
+.campaigns .campaign{background:var(--panel);padding:12px;border-radius:10px;margin-bottom:12px}
+.progress-bar{height:10px;background:rgba(255,255,255,0.05);border-radius:6px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));width:0%}
+
+.campaign-form label{display:block;margin-top:8px}
+.campaign-form input, .campaign-form select{width:100%;padding:8px;border-radius:8px;border:0;background:rgba(255,255,255,0.03);color:#e6eef6}
+.campaign-form button{margin-top:8px;padding:8px 10px;border-radius:8px;border:0;background:var(--accent);color:#021018;cursor:pointer}
+
+.info{font-size:13px;color:var(--muted);margin-top:12px}
+
+.connect-btn {
+  background: #1db954;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  margin-left: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.connect-btn:hover {
+  background: #17a74a;
+}
+
+/* === Wallet Buttons === */
+.connect-btn, .disconnect-btn {
+  background: #1db954;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  margin-left: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.connect-btn:hover, .disconnect-btn:hover {
+  background: #17a74a;
+}
+
+.disconnect-btn {
+  background: #e74c3c;
+}
+
+.disconnect-btn:hover {
+  background: #c0392b;
+}
+
+/* === Wallet Buttons === */
+.connect-btn, .disconnect-btn {
+  background: #1db954;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  margin-left: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.connect-btn:hover, .disconnect-btn:hover {
+  background: #17a74a;
+}
+
+.disconnect-btn {
+  background: #e74c3c;
+}
+
+.disconnect-btn:hover {
+  background: #c0392b;
+}
+

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TuneWave — Demo Music Crowdfund Frontend</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app" class="app">
+    <aside class="sidebar">
+      <div class="logo">TuneWave</div>
+      <nav class="nav">
+        <button class="nav-btn" data-view="home">Home</button>
+        <button class="nav-btn" data-view="search">Search</button>
+        <button class="nav-btn" data-view="library">Library</button>
+        <button class="nav-btn" data-view="crowdfund">Crowdfund</button>
+      </nav>
+      <div class="playlists">
+        <div class="playlists-title">Playlists</div>
+        <ul>
+          <li>Discover Weekly</li>
+          <li>Top Hits</li>
+          <li>Chill Vibes</li>
+        </ul>
+      </div>
+      <div class="sidebar-footer">Built with ❤️ — Demo</div>
+    </aside>
+
+    <main class="main">
+      <header class="header">
+        <input id="searchInput" placeholder="Search songs, artists..." />
+        <!-- wallet buttons (do NOT remove) -->
+        <button id="connectBtn" class="connect-btn">Connect Wallet</button>
+        <button id="disconnectBtn" class="disconnect-btn" style="display:none;">Disconnect</button>
+      </header>
+
+      <section id="homeView" class="view active">
+        <h2>Featured</h2>
+        <div id="artistsRow" class="artists-row"></div>
+
+        <h2>Top Songs</h2>
+        <table class="songs-table" id="songsTable">
+          <thead><tr><th>#</th><th>Title</th><th>Artist</th><th>Duration</th><th>Plays</th><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <section id="crowdfundView" class="view">
+        <h2>Crowdfund an Artist</h2>
+        <div class="crowdfund-grid">
+          <div class="campaigns" id="campaignsList"></div>
+          <div class="campaign-form">
+            <h3>Create campaign (artist)</h3>
+            <label>Artist name<input id="cfArtist" /></label>
+            <label>Target amount (USD)<input id="cfTarget" type="number" /></label>
+            <button id="createCampaignBtn">Create Campaign</button>
+            <hr />
+            <h3>Simulate contributor</h3>
+            <label>Your name<input id="contriName" /></label>
+            <label>Amount (USD)<input id="contriAmount" type="number" /></label>
+            <label>Choose campaign<select id="contriSelect"></select></label>
+            <button id="contributeBtn">Contribute</button>
+            <hr />
+            <div class="info">
+              <strong>How it works:</strong>
+              <p>Artists set a target amount. Contributors fund the campaign and receive a share proportional to their contribution. When streams happen, revenue is distributed proportionally to contributors.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="searchView" class="view">
+        <h2>Search results</h2>
+        <div id="searchResults"></div>
+      </section>
+
+      <section id="libraryView" class="view">
+        <h2>Your Library</h2>
+        <p>Saved songs will show up here (local only)</p>
+        <div id="libraryList"></div>
+      </section>
+    </main>
+
+    <div class="player" id="player">
+      <div class="player-left">
+        <div id="player-art" class="player-art"></div>
+        <div class="player-meta">
+          <div id="player-title">No song</div>
+          <div id="player-artist">—</div>
+        </div>
+        <button id="likeBtn" class="icon-btn" title="Like">♥</button>
+      </div>
+
+      <div class="player-center">
+        <div class="controls">
+          <button id="prevBtn" class="icon-btn">⏮</button>
+          <button id="playBtn" class="play-btn">▶</button>
+          <button id="nextBtn" class="icon-btn">⏭</button>
+        </div>
+        <div class="progress">
+          <span id="curTime">0:00</span>
+          <input id="seek" type="range" min="0" max="100" value="0" />
+          <span id="durTime">0:00</span>
+        </div>
+      </div>
+
+      <div class="player-right">
+        <label>Volume<input id="volume" type="range" min="0" max="1" step="0.01" value="0.8" /></label>
+      </div>
+    </div>
+  </div>
+
+  <template id="artistCardTpl">
+    <div class="artist-card">
+      <div class="artist-art"></div>
+      <div class="artist-name"></div>
+      <div class="artist-meta"></div>
+      <button class="view-campaign-btn">View Campaign</button>
+    </div>
+  </template>
+
+  <template id="songRowTpl">
+    <tr>
+      <td class="idx"></td>
+      <td class="title"></td>
+      <td class="artist"></td>
+      <td class="duration"></td>
+      <td class="plays"></td>
+      <td><button class="play-row-btn">Play</button></td>
+    </tr>
+  </template>
+
+  <!-- ethers.js -->
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+
+  <!-- load the app script (keeps your UI code in app.js) -->
+  <script src="app.js"></script>
+</body>
+</html>
