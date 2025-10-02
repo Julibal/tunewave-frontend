@@ -134,4 +134,104 @@ html,body,#app{height:100%;margin:0;background:var(--bg);color:#e6eef6}
 .disconnect-btn:hover {
   background: #c0392b;
 }
+/* ------------------ */
+/* ✅ Responsive Fixes */
+/* ------------------ */
+@media (max-width: 768px) {
+  /* Sidebar becomes top nav */
+  .sidebar {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
 
+  .sidebar .logo {
+    font-size: 1.2rem;
+  }
+
+  .nav {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .playlists,
+  .sidebar-footer {
+    display: none; /* Hide extra clutter on small screens */
+  }
+
+  /* Main content */
+  .main {
+    padding: 0.5rem;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+  }
+
+  .songs-table th,
+  .songs-table td {
+    padding: 0.3rem;
+    font-size: 0.85rem;
+  }
+
+  /* Player adjustments */
+  .player {
+    flex-direction: column;
+    text-align: center;
+    padding: 0.5rem;
+  }
+
+  .player-left,
+  .player-center,
+  .player-right {
+    width: 100%;
+    margin: 0.2rem 0;
+    justify-content: center;
+  }
+
+  .player-meta {
+    font-size: 0.9rem;
+  }
+
+  .controls button {
+    font-size: 1rem;
+    margin: 0 0.3rem;
+  }
+
+  .progress {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  #searchInput {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 0.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav button {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .songs-table {
+    font-size: 0.75rem;
+  }
+
+  .controls button {
+    font-size: 0.9rem;
+  }
+
+  .logo {
+    font-size: 1rem;
+  }
+}

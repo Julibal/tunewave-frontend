@@ -2,9 +2,89 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>TuneWave — Demo Music Crowdfund Frontend</title>
   <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* ✅ Responsive fixes */
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+
+    .app {
+      display: flex;
+      height: 100vh;
+    }
+
+    .sidebar {
+      width: 240px;
+      background: #111;
+      color: #fff;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem;
+    }
+
+    .player {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #222;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.5);
+      flex-wrap: wrap;
+    }
+
+    /* ✅ Mobile adjustments */
+    @media (max-width: 768px) {
+      .app {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 0.5rem 0;
+      }
+
+      .nav {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .main {
+        padding: 0.5rem;
+      }
+
+      .player {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .player-left,
+      .player-center,
+      .player-right {
+        width: 100%;
+        margin: 0.2rem 0;
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
 <body>
   <div id="app" class="app">
@@ -30,9 +110,6 @@
     <main class="main">
       <header class="header">
         <input id="searchInput" placeholder="Search songs, artists..." />
-        <!-- wallet buttons (do NOT remove) -->
-        <button id="connectBtn" class="connect-btn">Connect Wallet</button>
-        <button id="disconnectBtn" class="disconnect-btn" style="display:none;">Disconnect</button>
       </header>
 
       <section id="homeView" class="view active">
@@ -41,7 +118,9 @@
 
         <h2>Top Songs</h2>
         <table class="songs-table" id="songsTable">
-          <thead><tr><th>#</th><th>Title</th><th>Artist</th><th>Duration</th><th>Plays</th><th></th></tr></thead>
+          <thead>
+            <tr><th>#</th><th>Title</th><th>Artist</th><th>Duration</th><th>Plays</th><th></th></tr>
+          </thead>
           <tbody></tbody>
         </table>
       </section>
@@ -131,10 +210,6 @@
     </tr>
   </template>
 
-  <!-- ethers.js -->
-  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
-
-  <!-- load the app script (keeps your UI code in app.js) -->
   <script src="app.js"></script>
 </body>
 </html>
