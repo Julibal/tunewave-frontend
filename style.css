@@ -217,3 +217,90 @@ html,body,#app { height:100%; margin:0; background:var(--bg); color:#e6eef6 }
   .controls button { font-size:0.9rem }
   .logo { font-size:1rem }
 }
+/* ------------------ */
+/* ✅ Mobile First Fix */
+/* ------------------ */
+@media (max-width: 768px) {
+  /* Sidebar → Top Navbar */
+  .sidebar {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+
+  .main {
+    margin-top: 70px; /* push content down so sidebar doesn’t cover it */
+    padding: 10px;
+  }
+
+  .playlists,
+  .sidebar-footer {
+    display: none;
+  }
+
+  /* Header search + connect button */
+  .header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .header input {
+    width: 100%;
+  }
+
+  .connect-btn {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+  }
+
+  /* Player → stacked */
+  .player {
+    position: fixed;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    flex-direction: column;
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .player-left,
+  .player-center,
+  .player-right {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .progress {
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 16px;
+  }
+
+  .nav-btn {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .play-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+}
