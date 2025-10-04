@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="style.css" />
 
   <style>
-    /* ✅ Responsive fixes */
     body, html {
       margin: 0;
       padding: 0;
@@ -49,33 +48,47 @@
       flex-wrap: wrap;
     }
 
-    /* ✅ Mobile adjustments */
-    @media (max-width: 768px) {
-      .app {
-        flex-direction: column;
-      }
+    .connect-btn {
+      margin-left: 1rem;
+      padding: 0.4rem 0.8rem;
+      border: none;
+      border-radius: 5px;
+      background: #1db954;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .connect-btn:hover { background: #17a74a; }
 
+    #balanceDisplay {
+      margin-top: 0.3rem;
+      font-size: 0.9rem;
+      color: #333;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .app { flex-direction: column; }
       .sidebar {
         width: 100%;
         flex-direction: row;
         justify-content: space-around;
         padding: 0.5rem 0;
       }
-
-      .nav {
+      .nav { display: flex; gap: 0.5rem; }
+      .main { padding: 0.5rem; }
+      .header {
         display: flex;
+        flex-direction: column;
+        align-items: stretch;
         gap: 0.5rem;
       }
-
-      .main {
-        padding: 0.5rem;
-      }
-
+      .connect-btn { width: 100%; margin: 0; }
       .player {
         flex-direction: column;
         text-align: center;
+        padding: 0.5rem;
       }
-
       .player-left,
       .player-center,
       .player-right {
@@ -83,9 +96,27 @@
         margin: 0.2rem 0;
         justify-content: center;
       }
+      .controls button {
+        font-size: 1.2rem;
+        padding: 0.3rem 0.6rem;
+      }
+      .progress { width: 100%; margin-top: 0.3rem; }
     }
   </style>
+
+  <!-- ✅ Inject ethers.js (works for both v5 & v6 automatically) -->
+  <script>
+    (function loadEthers() {
+      if (window.ethers) return;
+      const script = document.createElement("script");
+      script.src = "https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js";
+      script.onload = () => console.log("✅ Ethers.js loaded from CDN");
+      script.onerror = () => console.error("❌ Failed to load ethers.js");
+      document.head.appendChild(script);
+    })();
+  </script>
 </head>
+
 <body>
   <div id="app" class="app">
     <aside class="sidebar">
@@ -110,6 +141,8 @@
     <main class="main">
       <header class="header">
         <input id="searchInput" placeholder="Search songs, artists..." />
+        <button id="connectBtn" class="connect-btn">Connect</button>
+        <div id="balanceDisplay"></div>
       </header>
 
       <section id="homeView" class="view active">
@@ -210,6 +243,26 @@
     </tr>
   </template>
 
-  <script src="app.js"></script>
+  <!-- ✅ Load main app AFTER ethers -->
+  <script>
+    window.addEventListener("load", () => {
+      if (!window.ethers) {
+        console.error("⚠️ Ethers not loaded yet. Retrying...");
+        setTimeout(() => {
+          if (window.ethers) {
+            const s = document.createElement("script");
+            s.src = "app.js";
+            document.body.appendChild(s);
+          } else {
+            console.error("❌ Ethers library failed to load.");
+          }
+        }, 1500);
+      } else {
+        const s = document.createElement("script");
+        s.src = "app.js";
+        document.body.appendChild(s);
+      }
+    });
+  </script>
 </body>
 </html>
